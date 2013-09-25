@@ -186,7 +186,7 @@
           (forward-line -1) ; move point to beginning of previous line, if any
           (if (looking-at ".*[:=][ \t]*$") ; if previous line ends with : or =
               (prog1
-                  (setq position default-tab-width) ; indent
+                  (setq position tab-width) ; indent
                 (setq reason "previous line ends in : or ="))
             (prog1
                 (setq position 0)  ; otherwise, do not indent
