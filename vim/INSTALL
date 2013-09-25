@@ -1,0 +1,37 @@
+===================================================
+ Installation instructions for the Ampl Vim syntax
+ highlighting mode.
+===================================================
+ D. Orban                 dominique.orban@gmail.com
+===================================================
+
+Place the file ampl.vim in your RUNTIMEPATH/syntax.  To find out what your
+RUNTIMEPATH is, start Vim and type the command
+
+ :set runtimepath
+
+You will want to install ampl.vim in the first directory reported. In
+Unix/Linux, it will most likely be ~/.vim. Hence, place ampl.vim in your
+.vim/syntax/. If you already have a file called ~/.vim/filetype.vim, add the
+following to it. If you do not yet have one create one with the following
+content.
+
+augroup filetypedetect
+au BufNewFile,BufRead *.mod  setf ampl
+au BufNewFile,BufRead *.dat  setf ampl
+au BufNewFile,BufRead *.ampl setf ampl
+augroup END
+
+This enables the syntax highlighting for Ampl model files (ending in .mod),
+data files (in .dat) and Ampl scripts (ending in .ampl). The suffix .ampl is my
+personal choice. Feel free to replace "*.ampl" above by your favorite
+extension.
+
+Exit Vim and open an Ampl model, data or script file. You should now be able to
+optimize in technicolor.
+
+Good luck.
+
+===================================================
+ D. Orban                 dominique.orban@gmail.com
+===================================================

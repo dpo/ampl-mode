@@ -1,0 +1,52 @@
+=================================================
+Installation instructions for the Ampl major mode
+Version for Emacs 21+
+=================================================
+D. Orban                dominique.orban@gmail.com
+=================================================
+
+Uncompress the file ampl-mode.tar.gz in the directory of your choice. It should
+contain the files
+
+	ampl-mode.el
+	INSTALL
+
+You are currently viewing the file install. To fix the ideas, let us assume
+that you uncompressed the archive in the directory /home/yourhome.
+
+Open the file ampl-mode.el in Emacs and say M-x (which means that you keep the
+[ALT] key pressed down and press X). Then, in the mini-buffer, type
+"byte-compile-file" and press Return. If Emacs asks you for a filename, type
+"ampl-mode.el". This should create a file called ampl-mode.elc in the same
+directory.
+
+Open your Emacs configuration file. It is usually called .emacs,
+.gnu-emacs, .gnu-emacs-custom, or similar, and is usually located in
+your home directory. Paste the following at the bottom of the file:
+
+(setq load-path (cons "/home/you" load-path)) ;; Adjust path here
+;; Ampl mode
+(setq auto-mode-alist
+      (cons '("\\.mod$" . ampl-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.dat$" . ampl-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.ampl$" . ampl-mode) auto-mode-alist))
+(setq interpreter-mode-alist
+      (cons '("ampl" . ampl-mode)
+            interpreter-mode-alist))
+
+(autoload 'ampl-mode "ampl-mode" "Ampl editing mode." t)
+
+
+Now exit Emacs, and restart it. You should have access to syntax highlighting
+and basic indentation when opening Ampl models and data files whose name ends
+in .mod, .dat or .ampl.
+
+I like my AMPL commands file with the .ampl suffix. If you prefer .run or
+anything else, adjust the 4th setq command in the code above.
+
+Enjoy.
+=================================================
+Dominique                        March 25th, 2003
+=================================================
