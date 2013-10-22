@@ -13,3 +13,7 @@ See the installation instructions for each editor. Suggestions and contributions
 ![Vim 7.4 in iTerm2 with Molokai Theme](sshots/vim.png?raw=true)
 
 Enjoy!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dpo/ampl-mode/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
