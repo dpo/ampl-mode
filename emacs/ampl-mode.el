@@ -152,7 +152,6 @@
 
 ;; Comments
 ;; start with a hash, end with a newline
-(setq comment-start "#")
 (defconst ampl-font-lock-comments
   (append ampl-font-lock-constants2
 	  (list '( "\\(#\\).*$" . (0 font-lock-comment-face t t))))
@@ -262,6 +261,9 @@
   ;; Indent Ampl commands
   (make-local-variable 'indent-line-function)
   (setq indent-line-function 'ampl-indent-line)
+
+  (setq comment-start "#")
+  (setq comment-end "")
 
   ;; Application of user commands
 
