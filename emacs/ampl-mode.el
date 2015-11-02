@@ -76,8 +76,8 @@
 ;; Files whose extension is .mod, .dat or .ampl will be edited in Ampl mode
 (setq auto-mode-alist
       (append
-       '(("\\(.mod\\|.dat\\|.ampl\\)'" . ampl-mode))
-     auto-mode-alist))
+       '(("\\(.mod\\|.dat\\|.ampl\\)\\'" . ampl-mode))
+       auto-mode-alist))
 
 (autoload 'ampl-mode "Ampl" "Entering Ampl mode..." t)
 
@@ -152,6 +152,7 @@
 
 ;; Comments
 ;; start with a hash, end with a newline
+(setq comment-start "#")
 (defconst ampl-font-lock-comments
   (append ampl-font-lock-constants2
 	  (list '( "\\(#\\).*$" . (0 font-lock-comment-face t t))))
@@ -262,9 +263,6 @@
   (make-local-variable 'indent-line-function)
   (setq indent-line-function 'ampl-indent-line)
 
-  (setq comment-start "#")
-  (setq comment-end "")
-
   ;; Application of user commands
 
   (defun ampl-insert-comment ()
@@ -334,7 +332,8 @@
   (setq major-mode 'ampl-mode)
   (setq mode-name "Ampl")
   (use-local-map ampl-mode-map)   ; Load Ampl keymap
-  (run-hooks 'ampl-mode-hook))
+  (run-mode-hooks 'ampl-mode-hook)
+)
 
 (provide 'ampl-mode)  ; So others can (require 'ampl-mode)
 
