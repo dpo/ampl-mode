@@ -1,17 +1,8 @@
-;;===============================================;;
-;;===============================================;;
-;;                                               ;;
-;;        Ampl mode for the Emacs editor.        ;;
-;;                                               ;;
-;;   Dominique Orban.     Chicago,  March 2003.  ;;
-;;                        Montreal, March 2008.  ;;
-;;                                               ;;
-;;   dominique.orban@gmail.com                   ;;
-;;                                               ;;
-;;===============================================;;
-;;===============================================;;
+;;; ampl-mode.el --- Ampl mode for the Emacs editor
 
+;; Filename: ampl-mode.el
 ;; Author: Dominique Orban <dominique.orban@gmail.com>
+;; Copyright (C) 2003, 2008, Dominique Orban, all rights reserved.
 ;; Keywords: Ampl
 ;; Version: 0.1
 ;; Time stamp: "Wed 25 Sep 2013 10:55:10 EDT"
@@ -337,4 +328,4 @@
 
 (provide 'ampl-mode)  ; So others can (require 'ampl-mode)
 
-;; ======================  E N D   O F   A M P L . E L  ========================
+;;; ampl-mode.el ends here
