@@ -188,7 +188,7 @@
           (cond (de-indent                      ;; Current line begins with "}"
                  (prog1
                      (setq position (max 0 (* (- indent-level 1) tab-width))) ; indent
-                   (setq reason "Current line start with }")))
+                   (setq reason "Current line starts with }")))
                 ((looking-at ".*[:={][ \t]*$")  ;; if previous line ends with : or = or {
                  (prog1
                      (setq position (* (+ indent-level 1) tab-width)) ; indent
