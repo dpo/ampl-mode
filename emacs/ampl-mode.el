@@ -185,14 +185,18 @@
           (forward-to-indentation -1) ;; move point to the first non blank char of previous line, if any
           (setq indent-level (/ (current-column) tab-width))
 
-          (cond (de-indent                      ;; Current line begins with "}"
+          (cond ((looking-at ".*[:={][ \t]*$")  ;; if previous line ends with : or = or {
+                 (if de-indent
+                     (prog1
+                         (setq position (* indent-level tab-width)) ; indent
+                       (setq reason "previous line ends in : or = or {, but current line starts with }"))
+                   (prog1
+                       (setq position (* (+ indent-level 1) tab-width)) ; indent
+                     (setq reason "previous line ends in : or = or {"))))
+                (de-indent                      ;; Current line begins with "}"
                  (prog1
                      (setq position (max 0 (* (- indent-level 1) tab-width))) ; indent
-                   (setq reason "Current line starts with }")))
-                ((looking-at ".*[:={][ \t]*$")  ;; if previous line ends with : or = or {
-                 (prog1
-                     (setq position (* (+ indent-level 1) tab-width)) ; indent
-                   (setq reason "previous line ends in : or = or {")))
+                   (setq reason "current line start with }")))
                 (t                              ;; otherwise, keep current indentation
                  (prog1
                      (setq position (* indent-level tab-width))
