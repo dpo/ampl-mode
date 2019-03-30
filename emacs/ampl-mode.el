@@ -156,13 +156,16 @@
 ;; ==================== I N D E N T A T I O N ====================
 
 ;; Indentation --- Fairly simple for now
-;;  1) If a line ends with a semicolon, the next line is flush left
-;;  2) If a line ends with a colon or an equal sign, the next line is indented.
+;;  1) If a line starts with }, decrease the indentation level
+;;  2) If a line ends with a colon or an equal sign or {, the next line is indented.
+;;  3) Otherwise, keep the same indentation
 (defun ampl-indent-line ()
   "Indent current line of Ampl code"
   (interactive)
   (let ((position 0)
-        (reason nil))
+        (reason nil)
+        (de-indent nil)
+        (indent-level 0))
 
     (save-excursion
       (beginning-of-line)   ; Set point to beginning of line
@@ -174,15 +177,31 @@
             (setq reason "top of buffer"))
 
         (progn
-          (forward-line -1) ; move point to beginning of previous line, if any
-          (if (looking-at ".*[:=][ \t]*$") ; if previous line ends with : or =
-              (prog1
-                  (setq position tab-width) ; indent
-                (setq reason "previous line ends in : or ="))
-            (prog1
-                (setq position 0)  ; otherwise, do not indent
-              (setq reason "nothing special"))
-            )
+          ;; Current line begins with "}"?
+          (back-to-indentation)
+          (setq de-indent (looking-at "}.*$"))
+
+          ;; Find the indentation level of the previous line
+          (forward-to-indentation -1) ;; move point to the first non blank char of previous line, if any
+          (setq indent-level (/ (current-column) tab-width))
+
+          (cond ((looking-at ".*[:={][ \t]*$")  ;; if previous line ends with : or = or {
+                 (if de-indent
+                     (prog1
+                         (setq position (* indent-level tab-width)) ; indent
+                       (setq reason "previous line ends in : or = or {, but current line starts with }"))
+                   (prog1
+                       (setq position (* (+ indent-level 1) tab-width)) ; indent
+                     (setq reason "previous line ends in : or = or {"))))
+                (de-indent                      ;; Current line begins with "}"
+                 (prog1
+                     (setq position (max 0 (* (- indent-level 1) tab-width))) ; indent
+                   (setq reason "current line start with }")))
+                (t                              ;; otherwise, keep current indentation
+                 (prog1
+                     (setq position (* indent-level tab-width))
+                   (setq reason "nothing special")))
+                )
           )
         )
       )
