@@ -65,7 +65,6 @@
   (define-key ampl-mode-map "\C-co" 'ampl-insert-comment))
 
 ;; Files whose extension is .mod, .dat or .ampl will be edited in Ampl mode
-;;;###autoload
 (setq auto-mode-alist
       (append
        '(("\\(.mod\\|.dat\\|.ampl\\)\\'" . ampl-mode))
