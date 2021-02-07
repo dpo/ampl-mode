@@ -70,8 +70,6 @@
        '(("\\(.mod\\|.dat\\|.ampl\\)\\'" . ampl-mode))
        auto-mode-alist))
 
-(autoload 'ampl-mode "Ampl" "Entering Ampl mode..." t)
-
 ;; ============= K E Y W O R D   H I G H L I G H T I N G ============
 
 ;; Keyword highlighting: model and data statements
