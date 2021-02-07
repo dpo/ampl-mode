@@ -65,6 +65,7 @@
   (define-key ampl-mode-map "\C-co" 'ampl-insert-comment))
 
 ;; Files whose extension is .mod, .dat or .ampl will be edited in Ampl mode
+;;;###autoload
 (setq auto-mode-alist
       (append
        '(("\\(.mod\\|.dat\\|.ampl\\)\\'" . ampl-mode))
@@ -217,6 +218,7 @@
 ;; ====================== S Y N T A X   T A B L E ==================
 
 ;; Syntax table for Ampl major mode
+;;;###autoload
 (defvar ampl-mode-syntax-table nil
   "Syntax table for Ampl mode.")
 
