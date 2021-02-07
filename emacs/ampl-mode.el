@@ -218,7 +218,6 @@
 ;; ====================== S Y N T A X   T A B L E ==================
 
 ;; Syntax table for Ampl major mode
-;;;###autoload
 (defvar ampl-mode-syntax-table nil
   "Syntax table for Ampl mode.")
 
@@ -240,6 +239,7 @@
 ;; ================= A M P L   M A J O R   M O D E ===============
 
 ;; Definition of Ampl major mode
+;;;###autoload
 (defun ampl-mode ()
   "Major mode for editing Ampl models.\nSpecial commands:\n\\{ampl-mode-map}"
   (interactive)
