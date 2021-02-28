@@ -70,8 +70,6 @@
        '(("\\(.mod\\|.dat\\|.ampl\\)\\'" . ampl-mode))
        auto-mode-alist))
 
-(autoload 'ampl-mode "Ampl" "Entering Ampl mode..." t)
-
 ;; ============= K E Y W O R D   H I G H L I G H T I N G ============
 
 ;; Keyword highlighting: model and data statements
@@ -238,6 +236,7 @@
 ;; ================= A M P L   M A J O R   M O D E ===============
 
 ;; Definition of Ampl major mode
+;;;###autoload
 (defun ampl-mode ()
   "Major mode for editing Ampl models.\nSpecial commands:\n\\{ampl-mode-map}"
   (interactive)
